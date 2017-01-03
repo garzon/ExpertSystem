@@ -1,0 +1,29 @@
+INPUT (
+    'traffic light' IS string OF (
+        'red'
+        'green'
+        'yellow'
+    )
+)
+
+OUTPUT (
+    'action'
+)
+
+IF
+    'traffic light' is 'green'
+THEN
+    'isSafe' is 'true'
+
+IF
+    'traffic light' is 'red'
+OR
+    'traffic light' is 'yellow'
+THEN
+    'isSafe' is 'false'
+
+IF 'isSafe' is 'true'
+THEN 'action' is 'cross'
+
+IF 'isSafe' is 'false'
+THEN 'action' is 'wait'

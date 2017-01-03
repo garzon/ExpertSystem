@@ -1,0 +1,8 @@
+*.class
+*.pdf
+.idea/
+out/
+*.iml
+report/
+build/
+*.zip
