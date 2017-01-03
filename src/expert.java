@@ -68,7 +68,7 @@ public class expert {
                 }
             }
             if(!evaluator.isUpdated) {
-                System.err.println("Cannot draw any more conclusions. Exit.");
+                System.out.println("Cannot draw any more conclusions. Exit.");
                 break;
             }
         }

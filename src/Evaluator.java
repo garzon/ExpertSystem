@@ -127,9 +127,9 @@ public class Evaluator extends ExpertRuleBaseVisitor<ExpertRuleVar> {
 
     @Override public ExpertRuleVar visitAndExp(ExpertRuleParser.AndExpContext ctx) {
         ExpertRuleVar l = visit(ctx.l);
-        if(l.isError()) return l;
+        if(l.isError() || l.isVoid()) return l;
         ExpertRuleVar r = visit(ctx.r);
-        if(r.isError()) return r;
+        if(r.isError() || r.isVoid()) return r;
         return ExpertRuleVar.makeBool((boolean)l.value && (boolean)r.value);
     }
 }

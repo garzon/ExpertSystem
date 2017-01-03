@@ -1,0 +1,27 @@
+INPUT (
+    'X' is number from -1.0 to 1.0
+    'Y' is number
+)
+
+OUTPUT ('quadrant')
+
+IF 'X' > 0 THEN 'sign of x' is 'positive'
+IF 'Y' > 0 THEN 'sign of y' is 'positive'
+IF 'X' < 0 THEN 'sign of x' is 'negative'
+IF 'Y' < 0 THEN 'sign of y' is 'negative'
+
+IF 'sign of x' is 'positive'
+AND 'sign of y' is 'positive'
+THEN 'quadrant' is 'first quadrant'
+
+IF 'sign of x' is 'negative'
+AND 'sign of y' is 'positive'
+THEN 'quadrant' is 'second quadrant'
+
+IF 'sign of x' is 'negative'
+AND 'sign of y' is 'negative'
+THEN 'quadrant' is 'third quadrant'
+
+IF 'sign of x' is 'positive'
+AND 'sign of y' is 'negative'
+THEN 'quadrant' is 'fourth quadrant'

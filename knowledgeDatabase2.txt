@@ -1,0 +1,23 @@
+// page 36
+
+INPUT (
+    'A' IS string OF ('true' 'unknown')
+    'B' IS string OF ('true' 'unknown')
+    'C' IS string OF ('true' 'unknown')
+    'D' IS string OF ('true' 'unknown')
+    'E' IS string OF ('true' 'unknown')
+)
+
+OUTPUT ('X' 'Y' 'Z')
+
+IF   'Y' IS 'true'
+AND  'D' IS 'true'
+THEN 'Z' IS 'true'
+
+IF   'X' IS 'true'
+AND  'B' IS 'true'
+AND  'E' IS 'true'
+THEN 'Y' IS 'true'
+
+IF   'A' IS 'true'
+THEN 'X' IS 'true'

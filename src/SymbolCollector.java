@@ -15,10 +15,22 @@ public class SymbolCollector extends ExpertRuleBaseVisitor<Object> {
 
     private boolean isDefined(ParserRuleContext ctx, String varName) {
         if(vars.get(varName) != null) {
+            hasError = true;
             CliUtil.err(ctx, String.format("Variable '%s' has been defined previously.", varName));
             return true;
         }
         return false;
+    }
+
+    @Override public Object visitNumber(ExpertRuleParser.NumberContext ctx) {
+        try {
+            float res = Float.parseFloat(ctx.getText());
+            return res;
+        } catch (NumberFormatException e) {
+            hasError = true;
+            CliUtil.err(ctx, String.format("Invalid number '%s'.", ctx.getText()));
+            return null;
+        }
     }
 
     @Override public Object visitNumDeclare(ExpertRuleParser.NumDeclareContext ctx) {
@@ -30,10 +42,16 @@ public class SymbolCollector extends ExpertRuleBaseVisitor<Object> {
         ExpertRuleVar res = new ExpertRuleVar();
         res.type = "number";
         res.name = varName;
-        if(ctx.left != null)
-            res.left = (float)visit(ctx.left);
-        if(ctx.right != null)
-            res.right = (float)visit(ctx.right);
+        if(ctx.left != null) {
+            Object n = visit(ctx.left);
+            if(n != null)
+                res.left = (float) n;
+        }
+        if(ctx.right != null) {
+            Object n = visit(ctx.right);
+            if(n != null)
+                res.right = (float) n;
+        }
         vars.put(varName, res);
         return null;
     }

@@ -1,0 +1,6 @@
+rm build -rf
+rm out/*
+rm out/science -rf
+mv out/production/ExpertSystem/* out/
+rm out/production -rf
+pause
