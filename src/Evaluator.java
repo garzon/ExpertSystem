@@ -16,9 +16,17 @@ public class Evaluator extends ExpertRuleBaseVisitor<ExpertRuleVar> {
     public HashMap<String, ExpertRuleVar> vars = new HashMap<>();
     public HashSet<String> output;
     public boolean hasError = false;
+    public boolean isUpdated = false;
 
     public static String trim(String id) {
         return id.substring(1, id.length() - 1);
+    }
+
+    public boolean checkAllOutputAssigned() {
+        for(String outputVarName: output) {
+            if(!vars.containsKey(outputVarName)) return false;
+        }
+        return true;
     }
 
     @Override public ExpertRuleVar visitNumDeclare(ExpertRuleParser.NumDeclareContext ctx) {

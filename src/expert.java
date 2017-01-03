@@ -56,7 +56,27 @@ public class expert {
         Evaluator evaluator = new Evaluator();
         evaluator.vars = collector.vars;
         evaluator.output = collector.output;
-        evaluator.visit(root);
+        evaluator.visit(root.input());
+
+        while(!evaluator.checkAllOutputAssigned()) {
+            evaluator.isUpdated = false;
+            for(ExpertRuleParser.IfStatementContext ctx: root.ifStatement()) {
+                if(evaluator.visit(ctx).isError()) {
+                    System.err.println("There are errors. Exit.");
+                    System.exit(3);
+                    return;
+                }
+            }
+            if(!evaluator.isUpdated) {
+                System.err.println("Cannot draw any more conclusions. Exit.");
+                break;
+            }
+        }
+
+        for(String outputVarName: evaluator.output) {
+            if(!evaluator.vars.containsKey(outputVarName)) continue;
+            System.out.printf("[Conclusion] '%s' should be '%s'.\n", outputVarName, evaluator.vars.get(outputVarName).value);
+        }
 
         System.exit(0);
     }
