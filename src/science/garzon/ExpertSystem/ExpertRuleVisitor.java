@@ -41,6 +41,12 @@ public interface ExpertRuleVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitIfStatement(ExpertRuleParser.IfStatementContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link ExpertRuleParser#varName}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVarName(ExpertRuleParser.VarNameContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link ExpertRuleParser#number}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -85,9 +91,24 @@ public interface ExpertRuleVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitOp(ExpertRuleParser.OpContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link ExpertRuleParser#exp}.
+	 * Visit a parse tree produced by the {@code andExp}
+	 * labeled alternative in {@link ExpertRuleParser#exp}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitExp(ExpertRuleParser.ExpContext ctx);
+	T visitAndExp(ExpertRuleParser.AndExpContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code orExp}
+	 * labeled alternative in {@link ExpertRuleParser#exp}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOrExp(ExpertRuleParser.OrExpContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code opExp}
+	 * labeled alternative in {@link ExpertRuleParser#exp}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOpExp(ExpertRuleParser.OpExpContext ctx);
 }

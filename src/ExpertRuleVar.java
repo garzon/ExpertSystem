@@ -18,6 +18,28 @@ public class ExpertRuleVar {
         return res;
     }
 
+    public static String trim(String id) {
+        return id.substring(1, id.length() - 1);
+    }
+
+    public String toString() {
+        return String.format("'%s(%s)'", type, value == null ? "Any" : value);
+    }
+
+    public static ExpertRuleVar makeString(String v) {
+        ExpertRuleVar res = new ExpertRuleVar();
+        res.value = trim(v);
+        res.type = "string";
+        return res;
+    }
+
+    public static ExpertRuleVar makeFloat(Float v) {
+        ExpertRuleVar res = new ExpertRuleVar();
+        res.value = v;
+        res.type = "number";
+        return res;
+    }
+
     public static ExpertRuleVar makeError() {
         ExpertRuleVar res = new ExpertRuleVar();
         res.type = "error";
@@ -32,6 +54,10 @@ public class ExpertRuleVar {
 
     public boolean isError() {
         return (type != null) && (type.equals("error"));
+    }
+
+    public boolean isVoid() {
+        return (type != null) && (type.equals("void"));
     }
 
     public static Scanner scanIn = new Scanner(System.in);

@@ -76,6 +76,18 @@ public class ExpertRuleBaseListener implements ExpertRuleListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterVarName(ExpertRuleParser.VarNameContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitVarName(ExpertRuleParser.VarNameContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterNumber(ExpertRuleParser.NumberContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -160,13 +172,37 @@ public class ExpertRuleBaseListener implements ExpertRuleListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterExp(ExpertRuleParser.ExpContext ctx) { }
+	@Override public void enterAndExp(ExpertRuleParser.AndExpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitExp(ExpertRuleParser.ExpContext ctx) { }
+	@Override public void exitAndExp(ExpertRuleParser.AndExpContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterOrExp(ExpertRuleParser.OrExpContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitOrExp(ExpertRuleParser.OrExpContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterOpExp(ExpertRuleParser.OpExpContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitOpExp(ExpertRuleParser.OpExpContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

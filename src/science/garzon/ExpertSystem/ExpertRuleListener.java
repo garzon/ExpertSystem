@@ -58,6 +58,16 @@ public interface ExpertRuleListener extends ParseTreeListener {
 	 */
 	void exitIfStatement(ExpertRuleParser.IfStatementContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link ExpertRuleParser#varName}.
+	 * @param ctx the parse tree
+	 */
+	void enterVarName(ExpertRuleParser.VarNameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ExpertRuleParser#varName}.
+	 * @param ctx the parse tree
+	 */
+	void exitVarName(ExpertRuleParser.VarNameContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link ExpertRuleParser#number}.
 	 * @param ctx the parse tree
 	 */
@@ -132,13 +142,39 @@ public interface ExpertRuleListener extends ParseTreeListener {
 	 */
 	void exitOp(ExpertRuleParser.OpContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link ExpertRuleParser#exp}.
+	 * Enter a parse tree produced by the {@code andExp}
+	 * labeled alternative in {@link ExpertRuleParser#exp}.
 	 * @param ctx the parse tree
 	 */
-	void enterExp(ExpertRuleParser.ExpContext ctx);
+	void enterAndExp(ExpertRuleParser.AndExpContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link ExpertRuleParser#exp}.
+	 * Exit a parse tree produced by the {@code andExp}
+	 * labeled alternative in {@link ExpertRuleParser#exp}.
 	 * @param ctx the parse tree
 	 */
-	void exitExp(ExpertRuleParser.ExpContext ctx);
+	void exitAndExp(ExpertRuleParser.AndExpContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code orExp}
+	 * labeled alternative in {@link ExpertRuleParser#exp}.
+	 * @param ctx the parse tree
+	 */
+	void enterOrExp(ExpertRuleParser.OrExpContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code orExp}
+	 * labeled alternative in {@link ExpertRuleParser#exp}.
+	 * @param ctx the parse tree
+	 */
+	void exitOrExp(ExpertRuleParser.OrExpContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code opExp}
+	 * labeled alternative in {@link ExpertRuleParser#exp}.
+	 * @param ctx the parse tree
+	 */
+	void enterOpExp(ExpertRuleParser.OpExpContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code opExp}
+	 * labeled alternative in {@link ExpertRuleParser#exp}.
+	 * @param ctx the parse tree
+	 */
+	void exitOpExp(ExpertRuleParser.OpExpContext ctx);
 }

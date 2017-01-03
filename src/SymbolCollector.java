@@ -13,10 +13,6 @@ public class SymbolCollector extends ExpertRuleBaseVisitor<Object> {
     public HashSet<String> output = new HashSet<>();
     public boolean hasError = false;
 
-    public static String trim(String id) {
-        return id.substring(1, id.length() - 1);
-    }
-
     private boolean isDefined(ParserRuleContext ctx, String varName) {
         if(vars.get(varName) != null) {
             CliUtil.err(ctx, String.format("Variable '%s' has been defined previously.", varName));
@@ -26,7 +22,7 @@ public class SymbolCollector extends ExpertRuleBaseVisitor<Object> {
     }
 
     @Override public Object visitNumDeclare(ExpertRuleParser.NumDeclareContext ctx) {
-        String varName = trim(ctx.id.getText());
+        String varName = ExpertRuleVar.trim(ctx.varName().getText());
         if(isDefined(ctx, varName)) {
             hasError = true;
             return null;
@@ -43,7 +39,7 @@ public class SymbolCollector extends ExpertRuleBaseVisitor<Object> {
     }
 
     @Override public Object visitStrDeclare(ExpertRuleParser.StrDeclareContext ctx) {
-        String varName = trim(ctx.id.getText());
+        String varName = ExpertRuleVar.trim(ctx.varName().getText());
         if(isDefined(ctx, varName)) {
             hasError = true;
             return null;
@@ -52,13 +48,8 @@ public class SymbolCollector extends ExpertRuleBaseVisitor<Object> {
         res.type = "string";
         res.name = varName;
         res.values = new HashSet<>();
-        boolean isId = true;
         for(TerminalNode val: ctx.STRING()) {
-            if(isId) {
-                isId = false;
-                continue;
-            }
-            res.values.add(trim(val.getText()));
+            res.values.add(ExpertRuleVar.trim(val.getText()));
         }
         vars.put(varName, res);
         return null;
@@ -86,7 +77,7 @@ public class SymbolCollector extends ExpertRuleBaseVisitor<Object> {
 
     @Override public Object visitOutput(ExpertRuleParser.OutputContext ctx) {
         for(TerminalNode val: ctx.STRING()) {
-            String varName = trim(val.getText());
+            String varName = ExpertRuleVar.trim(val.getText());
             //addInitVar(ctx, varName);
             output.add(varName);
         }

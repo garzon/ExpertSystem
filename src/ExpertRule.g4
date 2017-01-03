@@ -7,22 +7,24 @@ var : VAR '(' STRING+ ')' ;
 output : OUTPUT '(' STRING+ ')' ;
 ifStatement: IF exp THEN assignExp+ ;
 
+varName : STRING ;
+
 number : NUMBER ;
 
-varDeclare: id=STRING IS 'number' (FROM left=number)? (TO right=number)? #numDeclare
-    | id=STRING IS 'string' OF '(' STRING+ ')' #strDeclare
+varDeclare: varName IS 'number' (FROM left=number)? (TO right=number)? #numDeclare
+    | varName IS 'string' OF '(' STRING+ ')' #strDeclare
 ;
 
 val: num=number | str=STRING ;
 
 assignOp : IS | '=' ;
-assignExp : STRING assignOp val ;
+assignExp : varName assignOp val ;
 
 op : assignOp | '<' | '<=' | '>' | '>=' ;
 
-exp : STRING op val
-    | exp OR exp
-    | exp AND exp
+exp : varName op val #opExp
+    | l=exp OR r=exp  #orExp
+    | l=exp AND r=exp #andExp
 ;
 
 INPUT : 'INPUT' | 'input' ;
